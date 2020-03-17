@@ -4,11 +4,11 @@ services:
     # Frontend
     web:
         image: jitsi/web
-        expose:
-            - 8282
         ports:
             - '${HTTP_PORT}:80'
             - '${HTTPS_PORT}:443'
+        expose:
+            - 80
         volumes:
             - ${CONFIG}/web:/config
             - ${CONFIG}/web/letsencrypt:/etc/letsencrypt
@@ -163,4 +163,7 @@ services:
 
 # Custom network so all services can communicate using a FQDN
 networks:
+    default:
+        external:
+          name: nginx-proxy
     meet.jitsi:
