@@ -39,11 +39,6 @@ services:
             - VIRTUAL_HOST=meet.agenixo.eu
             - LETSENCRYPT_HOST=meet.agenixo.eu
             - LETSENCRYPT_EMAIL=dev@agenixo.eu
-        networks:
-            private_network:
-            meet.jitsi:
-                aliases:
-                    - ${XMPP_DOMAIN}
 
     # XMPP server
     prosody:
@@ -103,11 +98,6 @@ services:
             - JWT_TOKEN_AUTH_MODULE
             - LOG_LEVEL
             - TZ
-        networks:
-            private_network:
-            meet.jitsi:
-                aliases:
-                    - ${XMPP_SERVER}
 
     # Focus component
     jicofo:
@@ -131,9 +121,6 @@ services:
             - TZ
         depends_on:
             - prosody
-        networks:
-            meet.jitsi:
-            private_network:
 
     # Video bridge
     jvb:
@@ -159,13 +146,9 @@ services:
             - TZ
         depends_on:
             - prosody
-        networks:
-            meet.jitsi:
-            private_network:
 
 # Custom network so all services can communicate using a FQDN
 networks:
-    meet.jitsi:
-    private_network:
-        external: true
-        name: nginx-proxy
+  default:
+    external:
+      name: nginx-proxy
