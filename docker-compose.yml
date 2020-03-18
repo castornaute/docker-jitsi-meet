@@ -18,9 +18,9 @@ services:
             - DISABLE_HTTPS
             - JICOFO_AUTH_USER
             - LETSENCRYPT_DOMAIN
-            - VIRTUAL_HOST=meet.castornaute.com
-            - LETSENCRYPT_HOST=meet.castornaute.com
-            - LETSENCRYPT_EMAIL=dev@castornaute.com
+            - VIRTUAL_HOST=meet.agenixo.eu
+            - LETSENCRYPT_HOST=meet.agenixo.eu
+            - LETSENCRYPT_EMAIL=dev@agenixo.eu
             - PUBLIC_URL
             - XMPP_DOMAIN
             - XMPP_AUTH_DOMAIN
