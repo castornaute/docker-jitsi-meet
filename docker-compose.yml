@@ -37,6 +37,11 @@ services:
             - JIBRI_RECORDER_USER
             - JIBRI_RECORDER_PASSWORD
             - ENABLE_RECORDING
+        networks:
+            default:
+            meet.jitsi:
+                aliases:
+                    - ${XMPP_DOMAIN}
 
     # XMPP server
     prosody:
@@ -96,6 +101,10 @@ services:
             - JWT_TOKEN_AUTH_MODULE
             - LOG_LEVEL
             - TZ
+        networks:
+            meet.jitsi:
+                aliases:
+                    - ${XMPP_SERVER}
 
     # Focus component
     jicofo:
@@ -119,6 +128,8 @@ services:
             - TZ
         depends_on:
             - prosody
+        networks:
+            meet.jitsi:
 
     # Video bridge
     jvb:
@@ -144,9 +155,12 @@ services:
             - TZ
         depends_on:
             - prosody
+        networks:
+            meet.jitsi:
 
 # Custom network so all services can communicate using a FQDN
 networks:
     default:
         external:
           name: nginx-proxy
+    meet.jitsi:
